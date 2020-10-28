@@ -1,11 +1,34 @@
 package netology;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public class Radio {
+
+    private int currentStation;
+    final int minStationNumber = 0;
+    final int maxStationNumber;
+    final int minSound = 0;
+    final int maxSound = 100;
+    private int currentSound;
 
 
+    // конструкторы
+    public Radio (){
+        this.maxStationNumber = 10;
+        this.currentStation = 10;
+    }
 
+    public Radio (int currentStation, int maxStationNumber){
+        this.currentStation =currentStation;
+        this.maxStationNumber = maxStationNumber;
+    }
+
+
+    public int getStationNumber() {
+        return currentStation;
+    }
+
+    public int getCurrentSound() {
+        return currentSound;
+    }
 
     //увеличиваем громкость
     public void increaseSound() {
