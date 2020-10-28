@@ -70,7 +70,5 @@ public class Radio {
         } else {
             currentStation = stationNumber;
         }
-        assert stationNumber > 0;
-        assert stationNumber < 10;
     }
 }

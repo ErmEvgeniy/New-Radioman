@@ -62,7 +62,7 @@ class RadioTest {
         radio.nextStation();
         assertEquals(9, radio.getStationNumber());
 
-        //Если текущая радиостанция - 10 и клиент нажал на кнопку next (следующая) на пульте, то текущей должна стать 0-ая
+        //Если текущая радиостанция - 9 и клиент нажал на кнопку next (следующая) на пульте, то текущей должна стать 0-ая
         radio.nextStation();
         assertEquals(0, radio.getStationNumber());
     }
@@ -92,5 +92,6 @@ class RadioTest {
         Radio radio2 = new Radio();
 
         radio2.setStation(3);
+        assertEquals(3, radio2.getStationNumber());
     }
 }
