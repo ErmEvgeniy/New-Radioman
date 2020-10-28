@@ -2,62 +2,29 @@ package netology;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
 
-    //увеличиваем громкость
     @Test
-    public void testRadioUpVolume() {
+    public void shouldCreate (){
 
         Radio radio = new Radio();
 
-        for (int i = 1; i < 100; i++) {
-            radio.increaseSound();
-        }
-        assertEquals(99, radio.getCurrentSound());
-
-        radio.increaseSound();
-        assertEquals(100, radio.getCurrentSound());
-
-        //дальнейшее нажатие ни к чему не приводит, значение остается прежним
-        radio.increaseSound();
-        assertEquals(100, radio.getCurrentSound());
-    }
-
-    //уменьшаем громкость
-    @Test
-    public void testRadioDownVolume() {
-
-        Radio radio = new Radio();
-
-        //  т.к у нас значение 0 по умолчанию, я сначала увеличиваю на пару пунктов, а потом уменьшаю громкость
-        // и делаю нужную проверку
-        radio.increaseSound();
-        assertEquals(1, radio.getCurrentSound());
-
-        radio.increaseSound();
-        assertEquals(2, radio.getCurrentSound());
-
-        radio.decreaseSound();
-        assertEquals(1, radio.getCurrentSound());
-
-        radio.decreaseSound();
+        assertEquals(0, radio.getCurrentStation());
+        assertEquals(0, radio.getMinStationNumber());
+        assertEquals(10, radio.getMaxStationNumber());
+        assertEquals(0, radio.getMinSound());
+        assertEquals(100, radio.getMaxSound());
         assertEquals(0, radio.getCurrentSound());
 
-        //дальнейшее нажатие ни к чему не приводит, значение остается прежним
-        radio.decreaseSound();
-        assertEquals(0, radio.getCurrentSound());
     }
 
-    //переключаем радиостанцию на следующую
     @Test
-    public void testRadioNextStation() {
+    public void createRadio (){
 
-        Radio radio = new Radio(7, 9);
+        Radio radio = new Radio(3,1,9,2,99,23);
 
-        radio.nextStation();
-        assertEquals(8, radio.getStationNumber());
 
         radio.nextStation();
         assertEquals(9, radio.getStationNumber());
@@ -65,33 +32,51 @@ class RadioTest {
         //Если текущая радиостанция - 9 и клиент нажал на кнопку next (следующая) на пульте, то текущей должна стать 0-ая
         radio.nextStation();
         assertEquals(0, radio.getStationNumber());
+    
     }
 
-    //переключаем радиостанцию на предыдущую
     @Test
-    public void testRadioPreviousStation() {
+    public void setCreateRadio (){
 
         Radio radio = new Radio();
 
-        radio.prevStation();
-        assertEquals(9, radio.getStationNumber());
+        radio.setCurrentStation(5);
+        radio.setMinStationNumber(2);
+        radio.setMaxStationNumber(10);
+        radio.setMinSound(3);
+        radio.setMaxSound(95);
+        radio.setCurrentSound(30);
 
-        radio.prevStation();
-        assertEquals(8, radio.getStationNumber());
+        assertEquals(5, radio.getCurrentStation());
+        assertEquals(2, radio.getMinStationNumber());
+        assertEquals(10, radio.getMaxStationNumber());
+        assertEquals(3, radio.getMinSound());
+        assertEquals(95, radio.getMaxSound());
+        assertEquals(30, radio.getCurrentSound());
 
-        radio.prevStation();
-        assertEquals(7, radio.getStationNumber());
-
-        radio.prevStation();
-        assertEquals(6, radio.getStationNumber());
     }
-    // выставляем станцию с цифрового пульта
     @Test
-    public void testInstallRadioStation () {
+    public void variableTestRadio () {
 
-        Radio radio2 = new Radio();
+        int station = 3;
+        int minStation = 1;
+        int maxStation = 11;
+        int minSound = 2;
+        int maxSound = 95;
+        int currentSound = 44;
+
+        Radio radio = new Radio(station,minStation,maxStation,minSound,maxSound,currentSound);
+
+        assertEquals(3, radio.getCurrentStation());
+        assertEquals(1, radio.getMinStationNumber());
+        assertEquals(11, radio.getMaxStationNumber());
+        assertEquals(2, radio.getMinSound());
+        assertEquals(95, radio.getMaxSound());
+        assertEquals(44, radio.getCurrentSound());
+
 
         radio2.setStation(3);
         assertEquals(3, radio2.getStationNumber());
+
     }
 }
